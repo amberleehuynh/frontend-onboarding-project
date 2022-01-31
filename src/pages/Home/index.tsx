@@ -8,9 +8,11 @@ import './style.less';
 const Home: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
   const { apiUrl } = useContext(GlobalContext);
+  // const { itemId } = useContext(GlobalContext);
 
   useEffect(() => {
     getItems(apiUrl).then((data) => setItems(data));
+    // deleteItem(apiUrl).then((data) => setItems(data));
   }, []);
 
   return (

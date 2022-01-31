@@ -34,9 +34,9 @@ const ItemCard: React.FC<ItemCardProps> = ({ name, price, description, uuid }) =
         <a
           className="button-link"
           href="#"
-          onClick={(e) => {
+          onClick={async (e) => {
             e.preventDefault();
-            deleteItem(apiUrl, uuid);
+            await deleteItem(apiUrl, uuid);
             history.go(0); // rerenders the page
           }}
         >

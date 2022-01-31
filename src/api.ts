@@ -63,10 +63,36 @@ export const createItem = async (apiUrl: string, name: string, description: stri
   return data;
 };
 
+// Home Page - delete an item
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const deleteItem = async (apiUrl: string, itemId: string) => {};
+export const deleteItem = async (apiUrl: string, itemId: string) => {
+  const response = await fetch(`${apiUrl}/items/${itemId}`, {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = response.json();
+  return data;
+};
+
+// Home Page - buy an item
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const orderItem = async (apiUrl: string, userId: string, itemId: string): Promise<Order> => {
+  const response = await fetch(`${apiUrl}/items/${userId}${itemId}`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      userId,
+      itemId,
+    }),
+  });
+  const data = response.json();
+  return data;
   return emptyOrder;
 };
 
