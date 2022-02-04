@@ -22,18 +22,16 @@ const exampleOrders: Order[] = [
     },
   },
 ];
+
 const YourOrders: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [orders, setOrders] = useState<Order[]>(exampleOrders);
 
   return (
     <>
-      <Navbar title="Your Orders" />
+      <Navbar loggedIn title="Your Orders" />
       <div className="yourOrders">
-        <p>
-          For this page, you can use a variety of approaches. If you&apos;re uncertain, I recommend asking your mentor about which way to go about
-          implementing this!
-        </p>
+        <p>Take a look at some of the best things you’ve ordered so far!</p>
         <h4>Orders so far</h4>
         <pre>{JSON.stringify(orders)}</pre>
       </div>

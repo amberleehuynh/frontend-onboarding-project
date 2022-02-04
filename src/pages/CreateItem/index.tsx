@@ -14,10 +14,11 @@ const CreateItem: React.FC = () => {
   const [name, setName] = useState('');
   const descriptionState = useState('');
   const [price, setPrice] = useState('');
+  const loggedIn = true; // added
 
   return (
     <>
-      <Navbar title="Create Item" />
+      <Navbar loggedIn title="Create Item" /> {/* added */}
       <div className="createItem">
         <p className="createItem-description">Add an item to the world’s greatest store</p>
         <TextBox inputType="text" value={name} label="name" onChange={(t) => setName(t)} />
@@ -30,6 +31,7 @@ const CreateItem: React.FC = () => {
             await createItem(apiUrl, name, descriptionState[0], priceNumber); // Check
             history.push(pathLinks.home); // when we're done, go home to see the new item!
           }}
+          enabled={loggedIn} // added
         />
       </div>
     </>

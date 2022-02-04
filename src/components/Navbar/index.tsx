@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import { pathLinks } from '../../pathLinks';
@@ -8,11 +9,14 @@ import './style.less';
 
 interface NavbarProps {
   title: string;
+  loggedIn: boolean; // added
 }
 
-const Navbar: React.FC<NavbarProps> = ({ title }) => {
+// added
+const Navbar: React.FC<NavbarProps> = ({ title, loggedIn }) => {
   const { apiUrl, setApiUrl } = useContext(GlobalContext);
-  const loggedIn = true; // somehow, this should get set
+  // const loggedIn = true; // somehow, this should get set
+  const history = useHistory();
 
   return (
     <>
@@ -32,7 +36,8 @@ const Navbar: React.FC<NavbarProps> = ({ title }) => {
               onClick={(e) => {
                 e.preventDefault();
                 // eslint-disable-next-line no-alert
-                alert('logging out');
+                alert('Logging out');
+                history.push(pathLinks.login);
               }}
             >
               logout

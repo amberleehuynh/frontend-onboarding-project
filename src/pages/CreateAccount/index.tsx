@@ -17,7 +17,7 @@ const CreateAccount: React.FC = () => {
 
   return (
     <>
-      <Navbar title="Create Account" />
+      <Navbar loggedIn={false} title="Create Account" />
       <div className="createAccount">
         <p className="createAccount-description">
           Join the world’s largest store. Or

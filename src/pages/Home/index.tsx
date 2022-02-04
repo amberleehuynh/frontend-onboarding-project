@@ -17,7 +17,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Navbar title="Store Lite" />
+      <Navbar loggedIn title="Store Lite" /> {/* added */}
       <div className="items">
         {items.map((item) => (
           <ItemCard key={item.uuid} name={item.name} price={item.price} description={item.description} uuid={item.uuid} />

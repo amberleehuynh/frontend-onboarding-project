@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { deleteItem, orderItem } from '../../api';
 import { GlobalContext } from '../../contexts/GlobalContext';
 import Button from '../Button';
+import { pathLinks } from '../../pathLinks';
 import './style.less';
 
 interface ItemCardProps {
@@ -48,6 +49,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ name, price, description, uuid }) =
         text="Order Item"
         onClick={() => {
           orderItem(apiUrl, '', uuid);
+          history.push(pathLinks.orders);
         }}
         enabled={loggedIn}
       />

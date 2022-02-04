@@ -16,10 +16,11 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const { apiUrl } = useContext(GlobalContext);
   const history = useHistory();
+  const loggedIn = true; // added
 
   return (
     <>
-      <Navbar title="Login" />
+      <Navbar loggedIn={false} title="Login" /> {/* added */}
       <div className="login">
         <p className="login-description">
           Join the world’s largest store. Or
@@ -34,6 +35,7 @@ const Login: React.FC = () => {
             await loginUser(apiUrl, username, password);
             history.push(pathLinks.home);
           }}
+          enabled={loggedIn} // added
         />
       </div>
     </>
