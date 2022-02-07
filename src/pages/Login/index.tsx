@@ -23,8 +23,8 @@ const Login: React.FC = () => {
       <Navbar loggedIn={false} title="Login" /> {/* added */}
       <div className="login">
         <p className="login-description">
-          Join the world’s largest store. Or
-          <Link to={pathLinks.createAccount}> login</Link> if you’re already part of our community.
+          Welcome back to the world’s largest store. Or
+          <Link to={pathLinks.createAccount}> create an account</Link> if you need one.
         </p>
         <TextBox inputType="text" value={username} label="username" onChange={(t) => setUsername(t)} />
         <TextBox inputType="text" value={password} label="password" onChange={(t) => setPassword(t)} />
