@@ -12,12 +12,12 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     getItems(apiUrl).then((data) => setItems(data));
-    // deleteItem(apiUrl).then((data) => setItems(data));
   }, []);
 
   return (
     <>
       <Navbar loggedIn title="Store Lite" /> {/* added */}
+      {/* <p>Take a look at some of our best offerings</p> */}
       <div className="items">
         {items.map((item) => (
           <ItemCard key={item.uuid} name={item.name} price={item.price} description={item.description} uuid={item.uuid} />

@@ -1,3 +1,4 @@
+//  style={{ color: 'red' }}
 import React, { useState } from 'react';
 import { Order } from '../../api';
 import Navbar from '../../components/Navbar';
@@ -25,14 +26,45 @@ const exampleOrders: Order[] = [
 
 const YourOrders: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [orders, setOrders] = useState<Order[]>(exampleOrders);
+  const [orders, setOrders] = useState<Order[]>();
 
   return (
     <>
       <Navbar loggedIn title="Your Orders" />
       <div className="yourOrders">
         <p>Take a look at some of the best things you’ve ordered so far!</p>
-        <h4>Orders so far</h4>
+        <table>
+          <tr>
+            <th>item name</th>
+            <th>price</th>
+            <th>ordered at</th>
+          </tr>
+          <tr>
+            <td>item name</td>
+            <td>$4.00</td>
+            <td>February 10th 2022, 1:10:15 pm</td>
+          </tr>
+          <tr>
+            <td>item name</td>
+            <td>$4.00</td>
+            <td>February 10th 2022, 1:10:15 pm</td>
+          </tr>
+          <tr>
+            <td>item name</td>
+            <td>$4.00</td>
+            <td>February 10th 2022, 1:10:15 pm</td>
+          </tr>
+          <tr>
+            <td>item name</td>
+            <td>$4.00</td>
+            <td>February 10th 2022, 1:10:15 pm</td>
+          </tr>
+          <tr>
+            <td>item name</td>
+            <td>$4.00</td>
+            <td>February 10th 2022, 1:10:15 pm</td>
+          </tr>
+        </table>
         <pre>{JSON.stringify(orders)}</pre>
       </div>
     </>

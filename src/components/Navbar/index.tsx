@@ -15,8 +15,8 @@ interface NavbarProps {
 // added
 const Navbar: React.FC<NavbarProps> = ({ title, loggedIn }) => {
   const { apiUrl, setApiUrl } = useContext(GlobalContext);
-  // const loggedIn = true; // somehow, this should get set
   const history = useHistory();
+  // const loggedIn = true; // somehow, this should get set
 
   return (
     <>

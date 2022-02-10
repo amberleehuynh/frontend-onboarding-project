@@ -98,6 +98,18 @@ export const orderItem = async (apiUrl: string, userId: string, itemId: string):
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getOrders = async (apiUrl: string, userId: string): Promise<Order[]> => {
+  /*
+  const response = await fetch(`${apiUrl}/orders/${userId}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
+  */
+  // const response = await fetch(`${apiUrl}/orders/${userId}`);
+  // const data = response.json();
+  // return data;
   return [];
 };
 
