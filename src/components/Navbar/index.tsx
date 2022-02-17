@@ -39,6 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, loggedIn }) => {
                 // eslint-disable-next-line no-alert
                 alert('Logging out');
                 history.push(pathLinks.login);
+                history.go(0); // rerenders the page
               }}
             >
               logout

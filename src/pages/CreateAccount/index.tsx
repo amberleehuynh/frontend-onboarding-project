@@ -12,7 +12,7 @@ import './style.less';
 const CreateAccount: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { apiUrl } = useContext(GlobalContext);
+  const { apiUrl, setLoggedIn } = useContext(GlobalContext);
   const history = useHistory();
 
   return (
@@ -31,6 +31,7 @@ const CreateAccount: React.FC = () => {
             // API will return the created user object -> use as if the user just completed a login
             // After creating an account -> home page
             await createAccount(apiUrl, username, password);
+            setLoggedIn(true);
             history.push(pathLinks.home);
           }}
         />

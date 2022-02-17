@@ -14,7 +14,7 @@ import './style.less';
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { apiUrl } = useContext(GlobalContext);
+  const { apiUrl, setLoggedIn } = useContext(GlobalContext);
   const history = useHistory();
   const loggedIn = true; // added
 
@@ -33,6 +33,7 @@ const Login: React.FC = () => {
           onClick={async () => {
             /** After logging in -> home page */
             await loginUser(apiUrl, username, password);
+            setLoggedIn(true);
             history.push(pathLinks.home);
           }}
           enabled={loggedIn} // added

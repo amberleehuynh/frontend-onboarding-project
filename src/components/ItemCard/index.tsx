@@ -32,21 +32,24 @@ const ItemCard: React.FC<ItemCardProps> = ({ name, price, description, uuid }) =
       </div>
       <p>{description}</p>
 
-      <p>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a
-          className="button-link"
-          href="#"
-          onClick={async (e) => {
-            e.preventDefault();
-            await deleteItem(apiUrl, uuid);
-            history.go(0); // rerenders the page
-          }}
-        >
-          i don&apos;t like this, delete
-        </a>
-      </p>
+      {loggedIn && (
+        <p>
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          <a
+            className="button-link"
+            href="#"
+            onClick={async (e) => {
+              e.preventDefault();
+              await deleteItem(apiUrl, uuid);
+              history.go(0); // rerenders the page
+            }}
+          >
+            i don&apos;t like this, delete
+          </a>
+        </p>
+      )}
 
+      {/* added loggedIn */}
       {loggedIn && (
         <Button
           text="Order Item"
@@ -58,11 +61,13 @@ const ItemCard: React.FC<ItemCardProps> = ({ name, price, description, uuid }) =
         />
       )}
 
+      {/* added loggedIn */}
       {loggedIn === false && (
         <Button
           text="Sign in to Order!"
           onClick={() => {
             history.push(pathLinks.login);
+            history.go(0); // rerenders the page
           }}
           enabled={!loggedIn} // added
         />

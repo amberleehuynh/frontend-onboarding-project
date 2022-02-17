@@ -18,27 +18,6 @@ export interface Order {
   createdAt: number;
 }
 
-/* These exist so I can create a bunch of method stubs below. They shouldn't be used anywhere */
-const emptyUser: User = {
-  password: '',
-  username: '',
-  uuid: '',
-};
-
-const emptyItem: Item = {
-  description: '',
-  name: '',
-  price: 0,
-  uuid: '',
-};
-
-const emptyOrder = {
-  uuid: '',
-  user: emptyUser,
-  createdAt: 0,
-  item: emptyItem,
-};
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getItems = async (apiUrl: string): Promise<Item[]> => {
   const response = await fetch(`${apiUrl}/items`);
@@ -93,32 +72,56 @@ export const orderItem = async (apiUrl: string, userId: string, itemId: string):
   });
   const data = response.json();
   return data;
-  // return emptyOrder;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getOrders = async (apiUrl: string, userId: string): Promise<Order[]> => {
-  /*
   const response = await fetch(`${apiUrl}/orders/${userId}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify({
+      userId,
+    }),
   });
-  */
   // const response = await fetch(`${apiUrl}/orders/${userId}`);
-  // const data = response.json();
-  // return data;
-  return [];
+  const data = response.json();
+  return data;
+  // return [];
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const createAccount = async (apiUrl: string, username: string, password: string): Promise<User> => {
-  return emptyUser;
+  const response = await fetch(`${apiUrl}/user`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username,
+      password,
+    }),
+  });
+  const data = response.json();
+  return data;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const loginUser = async (apiUrl: string, username: string, password: string): Promise<User> => {
-  return emptyUser;
+  const response = await fetch(`${apiUrl}/user`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username,
+      password,
+    }),
+  });
+  const data = response.json();
+  return data;
 };
