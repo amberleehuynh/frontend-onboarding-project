@@ -1,4 +1,3 @@
-//  style={{ color: 'red' }}
 import React, { useState } from 'react';
 import { Order } from '../../api';
 import Navbar from '../../components/Navbar';
@@ -6,6 +5,7 @@ import './style.less';
 
 // when implementing pages dependent on data, i find it helpful to get the styling right using a
 // temporary array of data. then, once styling is finished, you can implement the api calls to get it all working
+/*
 const exampleOrders: Order[] = [
   {
     createdAt: Date.now(),
@@ -23,6 +23,7 @@ const exampleOrders: Order[] = [
     },
   },
 ];
+*/
 
 const YourOrders: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -25,6 +25,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, loggedIn }) => {
 
         <div className="navbar-links">
           <Link to="/">home</Link>
+          {/* {loggedIn && <Link to={pathLinks.home}>home</Link>} */}
           {!loggedIn && <Link to={pathLinks.login}>login</Link>}
           {loggedIn && <Link to={pathLinks.createItem}>create item</Link>}
           {loggedIn && <Link to={pathLinks.orders}>your orders</Link>}

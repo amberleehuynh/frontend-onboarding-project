@@ -93,7 +93,7 @@ export const orderItem = async (apiUrl: string, userId: string, itemId: string):
   });
   const data = response.json();
   return data;
-  return emptyOrder;
+  // return emptyOrder;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

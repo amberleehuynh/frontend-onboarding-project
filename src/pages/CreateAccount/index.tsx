@@ -21,7 +21,7 @@ const CreateAccount: React.FC = () => {
       <div className="createAccount">
         <p className="createAccount-description">
           Join the world’s largest store. Or
-          <Link to={pathLinks.createAccount}> login</Link> if you’re already part of our community.
+          <Link to={pathLinks.login}> login</Link> if you’re already part of our community.
         </p>
         <TextBox inputType="text" value={username} label="username" onChange={(t) => setUsername(t)} />
         <TextBox inputType="text" value={password} label="password" onChange={(t) => setPassword(t)} />

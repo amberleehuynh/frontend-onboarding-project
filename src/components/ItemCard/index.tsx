@@ -12,11 +12,13 @@ interface ItemCardProps {
   description: string;
   uuid: string;
 }
+
 const ItemCard: React.FC<ItemCardProps> = ({ name, price, description, uuid }) => {
   const { apiUrl } = useContext(GlobalContext);
-  const loggedIn = true; // somehow, this should get set
-
+  // const loggedIn = true; // somehow, this should get set
   const history = useHistory();
+  const { loggedIn } = useContext(GlobalContext);
+
   return (
     <div className="itemCard">
       <div className="itemCard-header">
@@ -45,14 +47,26 @@ const ItemCard: React.FC<ItemCardProps> = ({ name, price, description, uuid }) =
         </a>
       </p>
 
-      <Button
-        text="Order Item"
-        onClick={() => {
-          orderItem(apiUrl, '', uuid);
-          history.push(pathLinks.orders);
-        }}
-        enabled={loggedIn}
-      />
+      {loggedIn && (
+        <Button
+          text="Order Item"
+          onClick={() => {
+            orderItem(apiUrl, '', uuid);
+            history.push(pathLinks.orders);
+          }}
+          enabled={loggedIn}
+        />
+      )}
+
+      {loggedIn === false && (
+        <Button
+          text="Sign in to Order!"
+          onClick={() => {
+            history.push(pathLinks.login);
+          }}
+          enabled={!loggedIn} // added
+        />
+      )}
     </div>
   );
 };
