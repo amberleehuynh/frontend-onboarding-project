@@ -15,7 +15,7 @@ export interface Order {
   uuid: string;
   item: Item;
   user: User;
-  createdAt: number;
+  createdAt: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -59,7 +59,7 @@ export const deleteItem = async (apiUrl: string, itemId: string) => {
 // Home Page - buy an item
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const orderItem = async (apiUrl: string, userId: string, itemId: string): Promise<Order> => {
-  const response = await fetch(`${apiUrl}/items/${userId}${itemId}`, {
+  const response = await fetch(`${apiUrl}/order`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -76,20 +76,10 @@ export const orderItem = async (apiUrl: string, userId: string, itemId: string):
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getOrders = async (apiUrl: string, userId: string): Promise<Order[]> => {
-  const response = await fetch(`${apiUrl}/orders/${userId}`, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      userId,
-    }),
-  });
-  // const response = await fetch(`${apiUrl}/orders/${userId}`);
+  const response = await fetch(`${apiUrl}/orders?userId=${userId}`);
   const data = response.json();
   return data;
-  // return [];
+  // return data[userId];
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -111,7 +101,7 @@ export const createAccount = async (apiUrl: string, username: string, password: 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const loginUser = async (apiUrl: string, username: string, password: string): Promise<User> => {
-  const response = await fetch(`${apiUrl}/user`, {
+  const response = await fetch(`${apiUrl}/login`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',

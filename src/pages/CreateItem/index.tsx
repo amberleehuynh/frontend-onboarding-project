@@ -18,7 +18,7 @@ const CreateItem: React.FC = () => {
 
   return (
     <>
-      <Navbar loggedIn title="Create Item" /> {/* added */}
+      <Navbar loggedIn title="Create Item" />
       <div className="createItem">
         <p className="createItem-description">Add an item to the world’s greatest store</p>
         <TextBox inputType="text" value={name} label="name" onChange={(t) => setName(t)} />

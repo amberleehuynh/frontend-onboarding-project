@@ -14,7 +14,7 @@ interface ItemCardProps {
 }
 
 const ItemCard: React.FC<ItemCardProps> = ({ name, price, description, uuid }) => {
-  const { apiUrl } = useContext(GlobalContext);
+  const { apiUrl, userId } = useContext(GlobalContext);
   // const loggedIn = true; // somehow, this should get set
   const history = useHistory();
   const { loggedIn } = useContext(GlobalContext);
@@ -54,7 +54,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ name, price, description, uuid }) =
         <Button
           text="Order Item"
           onClick={() => {
-            orderItem(apiUrl, '', uuid);
+            orderItem(apiUrl, userId, uuid);
             history.push(pathLinks.orders);
           }}
           enabled={loggedIn}

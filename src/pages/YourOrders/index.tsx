@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Order } from '../../api';
+import React, { useContext, useEffect, useState } from 'react';
+import { getOrders, Order } from '../../api';
 import Navbar from '../../components/Navbar';
+import { GlobalContext } from '../../contexts/GlobalContext';
 import './style.less';
 
 // when implementing pages dependent on data, i find it helpful to get the styling right using a
@@ -27,7 +28,37 @@ const exampleOrders: Order[] = [
 
 const YourOrders: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [orders, setOrders] = useState<Order[]>();
+  const [orders, setOrders] = useState<Order[]>([]);
+  const { apiUrl, userId } = useContext(GlobalContext);
+  console.log(userId);
+
+  useEffect(() => {
+    if (userId === '') return;
+    getOrders(apiUrl, userId).then((data) => setOrders(data));
+
+    /*
+    const data = [
+      {
+        uuid: '4a30ed0f-861a-4956-946e-cbeb0d734af4',
+        item: {
+          uuid: '68b44405-af33-4728-bf19-aa38b78e1ce3',
+          name: 'corgi',
+          description: 'doggo',
+          price: 100,
+        },
+        user: {
+          uuid: 'test',
+          username: 'username',
+          password: 'password',
+        },
+        createdAt: '2022-02-03T21:29:57.449Z',
+      },
+    ];
+    setOrders(data);
+
+    console.log(orders);
+    */
+  }, [apiUrl, userId]);
 
   return (
     <>
@@ -35,38 +66,22 @@ const YourOrders: React.FC = () => {
       <div className="yourOrders">
         <p>Take a look at some of the best things you’ve ordered so far!</p>
         <table>
-          <tr>
-            <th>item name</th>
-            <th>price</th>
-            <th>ordered at</th>
-          </tr>
-          <tr>
-            <td>item name</td>
-            <td>$4.00</td>
-            <td>February 10th 2022, 1:10:15 pm</td>
-          </tr>
-          <tr>
-            <td>item name</td>
-            <td>$4.00</td>
-            <td>February 10th 2022, 1:10:15 pm</td>
-          </tr>
-          <tr>
-            <td>item name</td>
-            <td>$4.00</td>
-            <td>February 10th 2022, 1:10:15 pm</td>
-          </tr>
-          <tr>
-            <td>item name</td>
-            <td>$4.00</td>
-            <td>February 10th 2022, 1:10:15 pm</td>
-          </tr>
-          <tr>
-            <td>item name</td>
-            <td>$4.00</td>
-            <td>February 10th 2022, 1:10:15 pm</td>
-          </tr>
+          <tbody>
+            <tr>
+              <th>item name</th>
+              <th>price</th>
+              <th>ordered at</th>
+            </tr>
+            {orders &&
+              orders.map((order) => (
+                <tr key={order.uuid}>
+                  <td>{order.item.name}</td>
+                  <td>{order.item.price}</td>
+                  <td>{new Date(order.createdAt).toString()}</td>
+                </tr>
+              ))}
+          </tbody>
         </table>
-        <pre>{JSON.stringify(orders)}</pre>
       </div>
     </>
   );

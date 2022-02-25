@@ -12,7 +12,7 @@ import './style.less';
 const CreateAccount: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { apiUrl, setLoggedIn } = useContext(GlobalContext);
+  const { apiUrl, setLoggedIn, setUserId, userId } = useContext(GlobalContext); // added
   const history = useHistory();
 
   return (
@@ -25,16 +25,22 @@ const CreateAccount: React.FC = () => {
         </p>
         <TextBox inputType="text" value={username} label="username" onChange={(t) => setUsername(t)} />
         <TextBox inputType="text" value={password} label="password" onChange={(t) => setPassword(t)} />
-        <Button
-          text="Create an Account"
-          onClick={async () => {
-            // API will return the created user object -> use as if the user just completed a login
-            // After creating an account -> home page
-            await createAccount(apiUrl, username, password);
-            setLoggedIn(true);
-            history.push(pathLinks.home);
-          }}
-        />
+
+        {/* added setLoggedIn */}
+        {setLoggedIn && (
+          <Button
+            text="Create an Account"
+            onClick={async () => {
+              // API will return the created user object -> use as if the user just completed a login
+              // After creating an account -> home page
+              const data = await createAccount(apiUrl, username, password); // added
+              setLoggedIn(true);
+              setUserId(data.uuid); // added
+              localStorage.setItem('x', userId); // added
+              history.push(pathLinks.home);
+            }}
+          />
+        )}
       </div>
     </>
   );

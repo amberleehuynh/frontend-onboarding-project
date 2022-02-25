@@ -14,7 +14,7 @@ interface NavbarProps {
 
 // added
 const Navbar: React.FC<NavbarProps> = ({ title, loggedIn }) => {
-  const { apiUrl, setApiUrl } = useContext(GlobalContext);
+  const { apiUrl, setApiUrl, setLoggedIn } = useContext(GlobalContext);
   const history = useHistory();
   // const loggedIn = true; // somehow, this should get set
 
@@ -36,6 +36,8 @@ const Navbar: React.FC<NavbarProps> = ({ title, loggedIn }) => {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
+                setLoggedIn(false);
+                localStorage.removeItem('x');
                 // eslint-disable-next-line no-alert
                 alert('Logging out');
                 history.push(pathLinks.login);

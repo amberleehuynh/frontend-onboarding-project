@@ -14,7 +14,7 @@ import './style.less';
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { apiUrl, setLoggedIn } = useContext(GlobalContext);
+  const { apiUrl, setLoggedIn, setUserId, userId } = useContext(GlobalContext);
   const history = useHistory();
   const loggedIn = true; // added
 
@@ -28,16 +28,23 @@ const Login: React.FC = () => {
         </p>
         <TextBox inputType="text" value={username} label="username" onChange={(t) => setUsername(t)} />
         <TextBox inputType="text" value={password} label="password" onChange={(t) => setPassword(t)} />
-        <Button
-          text="Login"
-          onClick={async () => {
-            /** After logging in -> home page */
-            await loginUser(apiUrl, username, password);
-            setLoggedIn(true);
-            history.push(pathLinks.home);
-          }}
-          enabled={loggedIn} // added
-        />
+
+        {/* added setLoggedIn */}
+        {setLoggedIn && (
+          <Button
+            text="Login"
+            onClick={async () => {
+              /** After logging in -> home page */
+              const data = await loginUser(apiUrl, username, password);
+              setLoggedIn(true);
+              setUserId(data.uuid);
+              localStorage.setItem('x', data.uuid);
+              console.log(data.uuid);
+              history.push(pathLinks.home);
+            }}
+            enabled={loggedIn} // added
+          />
+        )}
       </div>
     </>
   );
